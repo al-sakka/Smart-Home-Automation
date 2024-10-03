@@ -121,4 +121,15 @@ void LCD_ShowInfo(void);
  */
 void LCD_ShowData(DCMotor_State a_motorState, uint8 a_temp, uint8 a_ldr);
 
+/*
+ * Handle critical flame sensor case
+ */
+void LCD_criticalHandler(void);
+
+/*
+ * Configure LCD Screens
+ */
+void LCD_config(uint8 *a_prevFlameVal, uint8 a_currentFlameVal, DCMotor_State a_motorState, uint8 a_temp, uint8 a_ldr);
+
+
 #endif  /* LCD_H_ */

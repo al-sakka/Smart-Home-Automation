@@ -9,7 +9,9 @@ Application/main.o Application/main.o: ../Application/main.c \
   ../Application/../HAL/LM35/../../Utils/std_types.h \
   ../Application/../HAL/Motor/motor.h ../Application/../HAL/LDR/ldr.h \
   ../Application/../HAL/LED/led.h \
-  ../Application/../HAL/LED/../../Utils/std_types.h
+  ../Application/../HAL/LED/../../Utils/std_types.h \
+  ../Application/../HAL/Flame/flame.h \
+  ../Application/../HAL/Buzzer/buzzer.h
 
 ../Application/../HAL/LCD/lcd.h:
 
@@ -34,3 +36,7 @@ Application/main.o Application/main.o: ../Application/main.c \
 ../Application/../HAL/LED/led.h:
 
 ../Application/../HAL/LED/../../Utils/std_types.h:
+
+../Application/../HAL/Flame/flame.h:
+
+../Application/../HAL/Buzzer/buzzer.h:

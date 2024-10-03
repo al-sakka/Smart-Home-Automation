@@ -16,6 +16,8 @@ RM := rm -rf
 -include HAL/LED/subdir.mk
 -include HAL/LDR/subdir.mk
 -include HAL/LCD/subdir.mk
+-include HAL/Flame/subdir.mk
+-include HAL/Buzzer/subdir.mk
 -include Application/subdir.mk
 -include subdir.mk
 -include objects.mk

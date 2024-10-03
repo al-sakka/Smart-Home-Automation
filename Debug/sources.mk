@@ -21,6 +21,8 @@ C_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 Application \
+HAL/Buzzer \
+HAL/Flame \
 HAL/LCD \
 HAL/LDR \
 HAL/LED \

@@ -13,6 +13,8 @@
 #include "../HAL/Motor/motor.h"
 #include "../HAL/LDR/ldr.h"
 #include "../HAL/LED/led.h"
+#include "../HAL/Flame/flame.h"
+#include "../HAL/Buzzer/buzzer.h"
 #include <avr/interrupt.h>
 
 /*******************************************************************************
@@ -25,19 +27,25 @@ int main(void)
 	ADC_init();
 	DCMotor_Init();
 	LEDS_init();
+	FlameSensor_init();
+	Buzzer_init();
 	LCD_ShowInfo();
 
-	DCMotor_State state = Stop;
-	uint8 tempVal 		= (uint8)INIT_VALUE_ZERO;
-	uint16 ldrVal 		= (uint16)INIT_VALUE_ZERO;
+	DCMotor_State state 	= Stop;
+	uint8 currentFlameVal	= (uint8)INIT_VALUE_ZERO;
+	uint8 *prevFlameVal		= (uint8 *)NULL_PTR;
+	uint8 tempVal 			= (uint8)INIT_VALUE_ZERO;
+	uint16 ldrVal 			= (uint16)INIT_VALUE_ZERO;
 
 	while(1)
 	{
 		tempVal = LM35_getTemperature();
 		ldrVal = LDR_getLightIntensity();
 		state = DCMotor_config(tempVal);
+		currentFlameVal = FlameSensor_getValue();
 
 		LED_config(ldrVal);
-		LCD_ShowData(state, tempVal, ldrVal);
+		LCD_config(&prevFlameVal, currentFlameVal, state, tempVal, ldrVal);
+		FlameSensor_config(currentFlameVal);
 	}
 }
