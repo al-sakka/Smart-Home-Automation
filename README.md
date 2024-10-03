@@ -98,4 +98,4 @@ This project is designed to implement a smart home system using the ATmega32 mic
 - [Project Video](https://youtu.be/Iyj7sOfwYLw)
 - [Flame Sensor Video](https://youtu.be/cD3n-Bz7liM)
 
-Thank you for reviewing the project!
+Happy Coding ❤️.
