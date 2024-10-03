@@ -13,21 +13,22 @@
 #ifndef LCD_H_
 #define LCD_H_
 
-#include "../std_types.h"
+#include "../../Utils/std_types.h"
+#include "../Motor/motor.h"
 
 /*******************************************************************************
  *                                Definitions                                  *
 *******************************************************************************/
 
-#define LCD_DATA_BITS_MODE  (4)
+#define LCD_DATA_BITS_MODE  (8)
 
-#define RS_PORT_ID          (PORTA_ID)
-#define RS_PIN_ID           (PIN1_ID)
+#define RS_PORT_ID          (PORTD_ID)
+#define RS_PIN_ID           (PIN0_ID)
 
-#define EN_PORT_ID          (PORTA_ID)
-#define EN_PIN_ID           (PIN2_ID)
+#define EN_PORT_ID          (PORTD_ID)
+#define EN_PIN_ID           (PIN1_ID)
 
-#define LCD_DATA_PORT_ID    (PORTA_ID)
+#define LCD_DATA_PORT_ID    (PORTC_ID)
 
 #if (LCD_DATA_BITS_MODE == (4))
 
@@ -107,5 +108,17 @@ void LCD_clearScreen(void);
  * Display a custom character on LCD
  */
 void LCD_displayCustomChar(uint8 location, uint8 charma[]);
+
+/*
+ * Description :
+ * Display static strings on LCD
+ */
+void LCD_ShowInfo(void);
+
+/*
+ * Description :
+ * Display dynamic values on LCD
+ */
+void LCD_ShowData(DCMotor_State a_motorState, uint8 a_temp, uint8 a_ldr);
 
 #endif  /* LCD_H_ */

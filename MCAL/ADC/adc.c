@@ -12,7 +12,8 @@
 
 #include <avr/io.h>
 #include "adc.h"
-#include "../common_macros.h"
+#include "../../Utils/common_macros.h"
+#include "../GPIO/gpio.h"
 
 /*******************************************************************************
 *                      Functions Definitions                                   *
@@ -24,8 +25,13 @@
 */
 void ADC_init(void)
 {
-    ADMUX = (1 << REFS0);      /* AVCC with external capacitor at AREF pin */
+	/* Internal 2.56V Voltage Reference with external capacitor at AREF pin */
+    ADMUX = (1 << REFS1) | (1 << REFS0);
+
     ADCSRA = (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0);  /* N = 128 */
+
+    GPIO_setupPinDirection(LM35_PORT_ID, LM35_PIN_ID, PIN_INPUT);
+    GPIO_setupPinDirection(LDR_PORT_ID, LDR_PIN_ID, PIN_INPUT);
 }
 
 /*

@@ -10,8 +10,9 @@
 *
 *******************************************************************************/
 
-#include "../common_macros.h"
-#include "../gpio/gpio.h"
+#include "../../Utils/common_macros.h"
+#include "../../HAL/Motor/motor.h"
+#include "../../MCAL/gpio/gpio.h"
 #include <util/delay.h>
 #include <stdio.h>
 #include "lcd.h"
@@ -208,4 +209,61 @@ void LCD_displayCustomChar(uint8 location, uint8 charmap[])
     {
         LCD_displayCharacter(charmap[i]); /* Send each row of the pattern */
     }
+}
+
+/*
+ * Description :
+ * Display static strings on LCD
+ */
+void LCD_ShowInfo(void)
+{
+	LCD_moveCursor(0, 3);
+	LCD_displayString("FAN IS ");
+
+	LCD_moveCursor(1, 0);
+	LCD_displayString("Temp=");
+
+	LCD_moveCursor(1, 8);
+	LCD_displayString("LDR=   %");
+}
+
+/*
+ * Description :
+ * Display dynamic values on LCD
+ */
+void LCD_ShowData(DCMotor_State a_motorState, uint8 a_temp, uint8 a_ldr)
+{
+	/*
+	 * Display Motor State
+	 */
+	LCD_moveCursor(0, 10);
+	if(a_motorState == Stop)
+	{
+		LCD_displayString("OFF");
+	}
+	else
+	{
+		LCD_displayString("ON ");
+	}
+
+	/*
+	 * Display LM35 value
+	 */
+	LCD_moveCursor(1, 5);
+	LCD_displayInt(a_temp);
+	if(a_temp < 100)
+	{
+		LCD_displayCharacter(' ');
+	}
+
+
+	/*
+	 * Display LDR value
+	 */
+	LCD_moveCursor(1, 12);
+	LCD_displayInt(a_ldr);
+	if(a_ldr < 100)
+	{
+		LCD_displayCharacter(' ');
+	}
 }
